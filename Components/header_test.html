@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Header</title>
+    <link rel="stylesheet" href="../Components/Modules/Header.css">
+</head>
+<body>
+
+    <header class="header-capsule">
+
+       <div id="header-modules-elements-enveloper"> <!--ENVELOPER-->
+
+        <!-- ELEMENTOS -->
+        <!-- LOGO E TITULO -->
+        <div class="title-logo-container">
+            <img class="site-logo" src="#" alt="logo">
+            <h1 class="site-title">
+                <span>Stante</span>
+                <span>Books</span>
+            </h1>
+        </div>
+
+        <!-- MENU DE NAVEGAÇÃO -->
+        <nav class="nav-container">
+            <!--Abrirá um menu dropdawn ao passar o cursor sobre este button-->
+            <button class="category-button-hover">
+                <span>Categorias</span>
+                <svg class="svg-icon-chevron" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48">
+                    <path d="M561-240 320-481l241-241 43 43-198 198 198 198-43 43Z" />
+                </svg>
+            </button>
+
+            <a href="#">Escrever</a>
+            <a href="#">Estante</a>
+            <a href="#">Explorar</a>
+        </nav>
+
+        <!-- CAIXA DE PESQUISA -->
+        <div class="search-books-container">
+            <input type="text" placeholder="O que deseja ler hoje?" name="search-books">
+            <button class="search-button">
+              <svg class="svg-icon-search" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48">
+                <path
+                    d="M796-121 533-384q-30 26-69.959 40.5T378-329q-108.162 0-183.081-75Q120-479 120-585t75-181q75-75 181.5-75t181 75Q632-691 632-584.85 632-542 618-502q-14 40-42 75l264 262-44 44ZM377-389q81.25 0 138.125-57.5T572-585q0-81-56.875-138.5T377-781q-82.083 0-139.542 57.5Q180-666 180-585t57.458 138.5Q294.917-389 377-389Z" />
+            </svg>  
+            </button>
+            
+            
+        </div>
+
+        <!-- PERFIL DO USUÁRIO -->
+        <!-- Espaço para inserir os elementos de login, registro e perfil do usuário via JS-->
+        <div class="user-profile-capsule"></div>
+    </div> 
+    </header>
+    
+    
+</body>
+</html>
