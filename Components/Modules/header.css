@@ -20,6 +20,7 @@
     --cor-branco: white;
     --cor-laranjado:rgb(252, 90, 3);
     --cor-laranja-01:rgb(245, 115, 2);
+    --cor-cinza-01:rgb(97, 97, 97);
     --cor-amarelo-alaranjado:rgb(255, 157, 0);
     --font-site-title1:'Title Part1';
     --font-site-title2: 'Title Part2';
@@ -402,7 +403,7 @@ header .user-menu-container {
     text-decoration: none;
     
 }
-.user-profile-settings >.user-profile-infos >.user-page-link:hover > div {
+.user-profile-settings >.user-profile-infos >.user-page-link:hover > div, .profile-generic-settings > .message-box-page-link:hover, .profile-generic-settings > .change-user-button:hover {
     background: rgba(240, 240, 240, 0.5);
     box-shadow: 2px 2px 2px rgba(30, 2, 26, 0.099);
     transition-duration: .3s;
@@ -422,7 +423,7 @@ header .user-menu-container {
 
 .user-profile-settings> .user-profile-infos> .user-page-link> div > .user-profile-name {
     height: fit-content;
-    color: rgb(97, 97, 97);
+    color: var(--cor-cinza-01);
     font-weight: bold;
     min-width: 200px;
 }
@@ -433,7 +434,7 @@ header .user-menu-container {
     border-radius: 50%;
 }
 
-.user-profile-settings > .user-profile-infos > .user-profile-bio-container {
+.user-profile-settings > .user-profile-infos > span.user-nick-name {
     border-bottom: 1px solid rgba(128, 128, 128, 0.732);
     box-shadow: 0px 2px rgba(128, 128, 128, 0.127);
     margin: .5em 0 1em 0;
@@ -442,6 +443,28 @@ header .user-menu-container {
     font-family: var(--font-site-title1);
     font-weight: bold;
     font-size: .7em;
+}
+
+.user-profile-settings > .user-profile-infos > .profile-generic-settings {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.profile-generic-settings > .message-box-page-link, .profile-generic-settings > .change-user-button {
+    text-decoration: none;
+    font-family: var(--font-navigation);
+    font-weight: bold;
+    font-size: .9em;
+    color: var(--cor-cinza-01);
+    text-align: start;
+    text-indent: 1em;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: transparent;
+    padding: 4px 0;
+    border-radius: 4px;
 }
 
 

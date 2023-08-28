@@ -52,7 +52,8 @@ const LINKS = {
 
 const PATH = {
     default_profile_icon: 'Assets/Images/user.svg',
-    teste: 'Assets/Images/274308964_115295657744251_6457623182383817067_n.jpg'
+    teste: 'Assets/Images/274308964_115295657744251_6457623182383817067_n.jpg',
+    style_general: 'Components/Modules/header.css'
 }
 
 const CATEGORIES = [
@@ -65,10 +66,16 @@ const CATEGORIES = [
 // FUNÇÕES
 //--------------------------------------------------------------------------------------------------------------------------------------------
 // Constrói o Header
-function Header(capsule_query) {
+function Header(capsule) {
 
-    // Recebe o appendChild dos elementos criados posteriormente
-    const capsule = document.querySelector(capsule_query)
+    // Pega o head do documento e adiciona os links das folhas de estilos
+    const getDocumentHead = document.querySelector('head')
+    console.log(getDocumentHead)
+    const style_general = document.createElement('link')
+    style_general.setAttribute('rel', 'stylesheet')
+    style_general.setAttribute('href', PATH.style_general)
+    getDocumentHead.appendChild(style_general)
+
 
     // Cria um elemento que irá envelopar todo o restante dos elementos HTML
     const enveloper = document.createElement('div')
@@ -125,8 +132,11 @@ function Header(capsule_query) {
         </div>
     `;
 
+    // Insere os elementos criados em suas respectivas cápsulas
     capsule.appendChild(enveloper);
     enveloper.innerHTML = elementsTree
+    insert_categoriesMenu(capsule, '.menu-dropdawn-capsule')
+    insert_userMenu(capsule, '.user-menu-capsule')
 
     // ANIMAÇÃO de EVENTOS
     // Mantem a cor de fundo do ícone de lupa quando o input estiver com foco
@@ -145,22 +155,28 @@ function Header(capsule_query) {
 
 //--------------------------------------------------------------------------------------------------------------------------------
 // Constroi o menu drop dawn de categorias
-function Header_categoriesMenu(capsule_query) {
-    const capsule = document.querySelector(capsule_query)
-
-    // Cria o elemento pai que envelopa todos os outros
+function insert_categoriesMenu(rootCapsule, innerCapsuleQuery) {
+    // rootCapsule recebe o elemento capsula pai que envolve toda a Header
+    // innerCpasuleQuery recece uma string contendo o query selector do elemento desejado que esteja dentro do rootCapsule
+    const capsule = rootCapsule.querySelector(innerCapsuleQuery)
+    // Cria um elemento que serve de envelope para os elemntos filhos
     const enveloper = document.createElement('div')
     enveloper.setAttribute('id', 'category-dropdawn-elements-enveloper')
-
-    // Arvore de elementos
-    const elementsTree = `
-        ${SVG.solid_triangle('class', 'svg-icon-solid-triangle')}
+    
+    
+    // Arvore de elementos strings
+    const stringElements = `
+        ${SVG.solid_triangle("class", "svg-icon-solid-triangle")}
 
         <ul class="category-list-container">
         </ul>
-    `
+    `;
+
+    // Capsula recebe o enveloper e este recebe o conteúdo de stringElements. Assim:
+    // div.enveloper >> stringElements
     capsule.appendChild(enveloper)
-    enveloper.innerHTML = elementsTree
+    enveloper.innerHTML = stringElements
+    
 
     // Percorre a lista de categorias
     for (let i=0; i < CATEGORIES.length; i++) {
@@ -169,23 +185,25 @@ function Header_categoriesMenu(capsule_query) {
         // ID individual baseado no seu conteudo de texto tratado
         const id = CATEGORIES[i].replace(' ', '-').replace(/ã/g, 'a').replace(/í/g, 'i').replace(/é/g, 'e').replace(/ç/g, 'c').replace(/ó/g, 'o').toLowerCase()
     
-
         // A cada item na lista, cria um elemento <li> e preenche com um elemento <a>
         const elem_li = document.createElement('li')
         const elem_a = `<a id="${id}" href=${LINKS.ToCategoryPage}><div class="category-name">${CATEGORIES[i]}</div></a>`
 
-        document.querySelector('.category-list-container').appendChild(elem_li).innerHTML = elem_a
+        // Cada elemento <li> criado recebe o conteudo de elem_a, e o elemento .category-list-container recebe cada elemento <li>
+        // div.enveloper >> stringElements >> ul.category-list-container >>... elem_li >> elem_a...
+        elem_li.innerHTML = elem_a
+        enveloper.querySelector('.category-list-container').appendChild(elem_li)
         
     }
-   
+
 }
 
 //----------------------------------------------------------------------------------------------------------
 // Constroi o menu do perfil do usuário e botão de login
 
-function Header_userMenu(capsule_query) {
+function insert_userMenu(rootCapsule, innerCapsuleQuery) {
     // Recebe os elementos envelopados
-    const capsule = document.querySelector(capsule_query)
+    const capsule = rootCapsule.querySelector(innerCapsuleQuery)
     // Cria o elemento pai que envelopa todos os outros elementos
     const enveloper = document.createElement('div')
     enveloper.setAttribute('id', 'user-menu-elements-enveloper')
@@ -201,16 +219,11 @@ function Header_userMenu(capsule_query) {
                             <span class="user-profile-name">Walcygleicson Mesquita de Oliveira</span>
                         </div> 
                     </a>
-                
-                <div class="user-profile-bio-container">
                     <span class="user-nick-name">@user_nick</span>
-                    <span class="user-mode">Autor</span>
-                </div>
-                
                 
                 <div class="profile-generic-settings">
                     <a class="message-box-page-link" href="#"><span>Caixa de Entrada</span></a>
-                    <button>Trocar Usuário</button>
+                    <button class="change-user-button">Trocar Usuário</button>
                 </div>
             </div>
             
@@ -223,7 +236,10 @@ function Header_userMenu(capsule_query) {
 
 
 
-Header('.header-capsule')
-Header_categoriesMenu('.menu-dropdawn-capsule')
-Header_userMenu('.user-menu-capsule')
+// Header('.header-capsule')
+// Header_categoriesMenu('.menu-dropdawn-capsule')
+// Header_userMenu('.user-menu-capsule')
+
+// Exportação dos módulos
+export default Header
 
