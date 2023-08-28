@@ -69,19 +69,19 @@ const CATEGORIES = [
 function Header(capsule) {
 
     // Pega o head do documento e adiciona os links das folhas de estilos
-    const getDocumentHead = document.querySelector('head')
-    console.log(getDocumentHead)
-    const style_general = document.createElement('link')
-    style_general.setAttribute('rel', 'stylesheet')
-    style_general.setAttribute('href', PATH.style_general)
-    getDocumentHead.appendChild(style_general)
+    // const getDocumentHead = document.querySelector('head')
+    // console.log(getDocumentHead)
+    // const style_general = document.createElement('link')
+    // style_general.setAttribute('rel', 'stylesheet')
+    // style_general.setAttribute('href', PATH.style_general)
+    // getDocumentHead.appendChild(style_general)
 
 
     // Cria um elemento que irá envelopar todo o restante dos elementos HTML
     const enveloper = document.createElement('div')
     enveloper.setAttribute('id', 'header-elements-enveloper')
    
-    let elementsTree = `
+    let stringElements = `
     <div class="title-logo-container">
             <img class="site-logo" src="#" alt="logo">
             <h1 class="site-title">
@@ -134,7 +134,7 @@ function Header(capsule) {
 
     // Insere os elementos criados em suas respectivas cápsulas
     capsule.appendChild(enveloper);
-    enveloper.innerHTML = elementsTree
+    enveloper.innerHTML = stringElements
     insert_categoriesMenu(capsule, '.menu-dropdawn-capsule')
     insert_userMenu(capsule, '.user-menu-capsule')
 
@@ -209,7 +209,7 @@ function insert_userMenu(rootCapsule, innerCapsuleQuery) {
     enveloper.setAttribute('id', 'user-menu-elements-enveloper')
     capsule.appendChild(enveloper)
     // Arvore de elementos
-    const elementsTree = `
+    const stringElements = `
         <div class="user-profile-settings">
         
             <div class="user-profile-infos">
@@ -230,15 +230,10 @@ function insert_userMenu(rootCapsule, innerCapsuleQuery) {
         </div>
     `
 
-    enveloper.innerHTML = elementsTree
+    enveloper.innerHTML = stringElements
 
 }
 
-
-
-// Header('.header-capsule')
-// Header_categoriesMenu('.menu-dropdawn-capsule')
-// Header_userMenu('.user-menu-capsule')
 
 // Exportação dos módulos
 export default Header
