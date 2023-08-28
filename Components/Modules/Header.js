@@ -149,6 +149,21 @@ function Header(capsule) {
         elem.style.fill = "white";
         elem.style.transitionDuration = '.5s'
     });
+
+    // Evento de click no botão do perfil do usuário
+    let toggleUserMenuButton = false
+    capsule.querySelector('.open-user-menu-button').addEventListener('click', () => {
+        if (!toggleUserMenuButton) {
+            capsule.querySelector('.user-menu-capsule').style.display = 'block'
+            capsule.querySelector('.hint-box').style.opacity = 0
+        } else {
+            capsule.querySelector(".user-menu-capsule").style.display = "none";
+            capsule.querySelector(".hint-box").style.opacity = 1
+        }
+
+        toggleUserMenuButton = !toggleUserMenuButton
+        
+    })
     
 }
 
@@ -213,22 +228,31 @@ function insert_userMenu(rootCapsule, innerCapsuleQuery) {
         <div class="user-profile-settings">
         
             <div class="user-profile-infos">
-                    <a href="#" class="user-page-link">
-                        <div>
-                            <img class="user-picture-profile" src="${PATH.teste}" alt="Foto de Perfil do Usuário">
-                            <span class="user-profile-name">Walcygleicson Mesquita de Oliveira</span>
-                        </div> 
-                    </a>
-                    <span class="user-nick-name">@user_nick</span>
+                <a href="#" class="user-page-link">
+                    <div>
+                        <img class="user-picture-profile" src="${PATH.teste}" alt="Foto de Perfil do Usuário">
+
+                        <span class="user-profile-name">Walcygleicson Mesquita de Oliveira</span>
+                    </div> 
+                </a>
+                <span class="user-nick-name">@user_nick</span>
                 
                 <div class="profile-generic-settings">
                     <a class="message-box-page-link" href="#"><span>Caixa de Entrada</span></a>
                     <button class="change-user-button">Trocar Usuário</button>
                 </div>
             </div>
+
+            <div class="profile-settings-menu">
+                <a class="feedback-page-link" href="#"><span> Enviar Feedback </span></a>
+                <a href="#" class="settings-page-link"><span> Configurações </span></a>
+                <a href="#" class="help-suport-page-link"><span> Ajuda e Suporte </span></a>
+                <button class="log-off-button">Sair</button>
+            </div>
             
         </div>
-    `
+
+    `;
 
     enveloper.innerHTML = stringElements
 

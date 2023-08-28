@@ -213,6 +213,22 @@ header .menu-dropdawn-capsule {
 
 .category-button-hover:hover > .menu-dropdawn-capsule {
     display: block;
+    animation: categories-menu-fade 1s;
+}
+
+@keyframes categories-menu-fade {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+    
 }
 
 #category-dropdawn-elements-enveloper {
@@ -358,6 +374,7 @@ header .user-menu-container {
     color: var(--cor-branco);
     border-radius: 4px;
     box-shadow: 2px 2px 3px rgba(83, 20, 60, 0.429);
+    cursor: pointer;
 }
 
 #user-log-off>.login-register-buttons-container>.login-button:hover,
@@ -379,7 +396,7 @@ header .user-menu-container {
 
 /* MENU DROPA DAWN DO PERFIL DO USUÁRIO */
 #user-log-on > .user-menu-capsule {
-    display: block;
+    display: none;
     padding: .6em;
     position: absolute;
     min-width: 240px;
@@ -388,22 +405,23 @@ header .user-menu-container {
     font-family: var(--font-navigation);
     color: rgb(80, 80, 80);
     border-radius: 5px 0 5px 5px;
-    background: linear-gradient(to top, var(--cor-roxo-01), var(--cor-roxo-02));
-    box-shadow: 3px 3px 3px rgba(20, 3, 23, 0.212);
+    background: rgba(245, 245, 245, 0.842);
+    border: 1px solid rgba(198, 198, 198, 0.271);
+    box-shadow: 3px 3px 3px rgba(74, 74, 74, 0.138);
     
 }
 
 .user-profile-settings > .user-profile-infos {
-    background: var(--cor-branco);
+    background: rgba(255, 255, 255, 0.716);
     border-radius: 5px;
     padding: .5em .2em;
-    box-shadow: 2px 2px 2px rgba(36, 3, 42, 0.425);
+    box-shadow: 2px 2px 2px rgba(186, 186, 186, 0.181);
 }
 .user-profile-settings > .user-profile-infos > .user-page-link {
     text-decoration: none;
     
 }
-.user-profile-settings >.user-profile-infos >.user-page-link:hover > div, .profile-generic-settings > .message-box-page-link:hover, .profile-generic-settings > .change-user-button:hover {
+.user-profile-settings >.user-profile-infos >.user-page-link:hover > div, .profile-generic-settings > .message-box-page-link:hover, .profile-generic-settings > .change-user-button:hover, .user-profile-settings > .profile-settings-menu > a:hover{
     background: rgba(240, 240, 240, 0.5);
     box-shadow: 2px 2px 2px rgba(30, 2, 26, 0.099);
     transition-duration: .3s;
@@ -435,8 +453,8 @@ header .user-menu-container {
 }
 
 .user-profile-settings > .user-profile-infos > span.user-nick-name {
-    border-bottom: 1px solid rgba(128, 128, 128, 0.732);
-    box-shadow: 0px 2px rgba(128, 128, 128, 0.127);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.259);
+    box-shadow: 0px 1px rgba(128, 128, 128, 0.127);
     margin: .5em 0 1em 0;
     padding: 0 0 3px .7em;
     display: flex;
@@ -451,7 +469,7 @@ header .user-menu-container {
 }
 
 
-.profile-generic-settings > .message-box-page-link, .profile-generic-settings > .change-user-button {
+.profile-generic-settings > .message-box-page-link, .profile-generic-settings > .change-user-button, .user-profile-settings > .profile-settings-menu > a {
     text-decoration: none;
     font-family: var(--font-navigation);
     font-weight: bold;
@@ -465,6 +483,40 @@ header .user-menu-container {
     background: transparent;
     padding: 4px 0;
     border-radius: 4px;
+}
+
+
+.user-profile-settings > .profile-settings-menu {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-profile-settings>.profile-settings-menu > a {
+    text-decoration: none;
+}
+.user-profile-settings>.profile-settings-menu > a > span {
+    width: 100%;
+}
+
+.user-profile-settings > .profile-settings-menu > button {
+    margin-top: 2em;
+    align-self: center;
+    width: 40%;
+    cursor: pointer;
+    border: 1px solid rgba(176, 176, 176, 0.293);
+    background:  var(--cor-branco);
+    font-family: var(--font-navigation);
+    font-weight: bold;
+    padding: 3px 0;
+    color: var(--cor-cinza-01);
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px rgba(177, 177, 177, 0.214);
+}
+.user-profile-settings>.profile-settings-menu>button:hover {
+    background: rgba(215, 215, 215, 0.171);
+    transition-duration: .3s;
+    color: var(--cor-laranjado);
 }
 
 
