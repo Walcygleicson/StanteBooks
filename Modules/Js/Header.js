@@ -1,6 +1,6 @@
 
 // PROPRIEDADES DE OBJETOS
-// Contem todo o conteúdo de texto padrão do HTML
+// lista de todo o conteúdo de texto padrão dos elementos HTML
 const TEXT = {
     title: ['Stante', 'Books'],
     navCategorias: 'Categorias',
@@ -20,7 +20,7 @@ const attr= (selector, name) => {
     return selectorString
 }
 
-// Contem elementos de imagens svg
+// Lista de elementos svg
 const SVG = {
     lupa: (s = String(), n = String()) => {
         return `<svg${attr(n, s)}xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48">
@@ -43,19 +43,20 @@ const SVG = {
 
 // Contem links de páginas
 const LINKS = {
-    Escrever: 'logo.html',
+    Escrever: '#',
     Estante: '#',
     Explorar: '#',
     ToCategoryPage: '###'
 
 }
 
+// Lista de caminhos de arquivos
 const PATH = {
     default_profile_icon: 'Assets/Images/user.svg',
-    teste: 'Assets/Images/274308964_115295657744251_6457623182383817067_n.jpg',
-    style_general: 'Components/Modules/header.css'
+    teste: 'Assets/Images/274308964_115295657744251_6457623182383817067_n.jpg'
 }
 
+// Lista de categorias
 const CATEGORIES = [
     'Fantasia', 'Suspense', 'Terror', 'Ficção Científica', 'Drama', 'Mistério', 'Aventura',
     'Terror Psicológico', 'Thriller', 'Ação', 'Horror Cósmico', 'Romance',
@@ -63,19 +64,13 @@ const CATEGORIES = [
 ]
 
 
-// FUNÇÕES
+
 //--------------------------------------------------------------------------------------------------------------------------------------------
-// Constrói o Header
+// FUNÇÕES
+//
+
+// ELEMENTO DO HEADER
 function Header(capsule) {
-
-    // Pega o head do documento e adiciona os links das folhas de estilos
-    // const getDocumentHead = document.querySelector('head')
-    // console.log(getDocumentHead)
-    // const style_general = document.createElement('link')
-    // style_general.setAttribute('rel', 'stylesheet')
-    // style_general.setAttribute('href', PATH.style_general)
-    // getDocumentHead.appendChild(style_general)
-
 
     // Cria um elemento que irá envelopar todo o restante dos elementos HTML
     const enveloper = document.createElement('div')
@@ -118,7 +113,7 @@ function Header(capsule) {
 
             <button class="open-user-menu-button">
                 <img class="user-picture-profile" src="${PATH.teste}" alt="Foto de Perfil do Usuário">
-                <div class="hint-box">Perfil</div>
+                <div class="hint-box hint-box-fade">Perfil</div>
             </button>
 
             <div class="login-register-buttons-container">
@@ -153,12 +148,12 @@ function Header(capsule) {
     // Evento de click no botão do perfil do usuário
     let toggleUserMenuButton = false
     capsule.querySelector('.open-user-menu-button').addEventListener('click', () => {
+        capsule.querySelector('.hint-box').classList.toggle('hint-box-fade')
         if (!toggleUserMenuButton) {
             capsule.querySelector('.user-menu-capsule').style.display = 'block'
-            capsule.querySelector('.hint-box').style.opacity = 0
+            
         } else {
             capsule.querySelector(".user-menu-capsule").style.display = "none";
-            capsule.querySelector(".hint-box").style.opacity = 1
         }
 
         toggleUserMenuButton = !toggleUserMenuButton
@@ -169,7 +164,7 @@ function Header(capsule) {
 
 
 //--------------------------------------------------------------------------------------------------------------------------------
-// Constroi o menu drop dawn de categorias
+// MENU DROP DAWN DA CATEGORIAS
 function insert_categoriesMenu(rootCapsule, innerCapsuleQuery) {
     // rootCapsule recebe o elemento capsula pai que envolve toda a Header
     // innerCpasuleQuery recece uma string contendo o query selector do elemento desejado que esteja dentro do rootCapsule
@@ -214,7 +209,7 @@ function insert_categoriesMenu(rootCapsule, innerCapsuleQuery) {
 }
 
 //----------------------------------------------------------------------------------------------------------
-// Constroi o menu do perfil do usuário e botão de login
+// MENU RÁPIDO DO PERFIL DO USUÁRIO E BOTÕES DE LOGIN E REGISTRO
 
 function insert_userMenu(rootCapsule, innerCapsuleQuery) {
     // Recebe os elementos envelopados
@@ -226,6 +221,7 @@ function insert_userMenu(rootCapsule, innerCapsuleQuery) {
     // Arvore de elementos
     const stringElements = `
         <div class="user-profile-settings">
+        ${SVG.solid_triangle()}
         
             <div class="user-profile-infos">
                 <a href="#" class="user-page-link">
