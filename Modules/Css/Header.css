@@ -98,7 +98,7 @@ nav.nav-container {
     width: fit-content;
 }
 
-.nav-container > .category-button-hover > span, .nav-container > a{
+.nav-container > .categories-button > span, .nav-container > a{
     color: var(--cor-cinza-alaranjado);
     font-size: var(--font-size-nav);
     font-family: var(--font-navigation);
@@ -107,7 +107,7 @@ nav.nav-container {
 }
 
 
-.nav-container > .category-button-hover {
+.nav-container > .categories-button {
     background: transparent;
     position: relative;
     cursor: default;
@@ -119,26 +119,26 @@ nav.nav-container {
 }
 
 /* Efeito de hover dos menus de navegação */
-.nav-container > .category-button-hover:hover,
-.category-button-hover:hover > span,
-.nav-container > .category-button-hover:hover>.svg-icon-chevron,
+.nav-container > .categories-button:hover,
+.categories-button:hover > span,
+.nav-container > .categories-button:hover>.svg-icon-chevron,
 .nav-container > a:hover {
     color: var(--cor-laranjado);
     fill: var(--cor-laranjado);
     transition-duration: .3s;
 }
 
-.nav-container > .category-button-hover:hover > .svg-icon-chevron {
+.nav-container > .categories-button:hover > .svg-icon-chevron {
     rotate: 90deg;
     transition-duration: .5s;
 }
 
-.nav-container>.category-button-hover:not(:hover) >.svg-icon-chevron {
+.nav-container>.categories-button:not(:hover) >.svg-icon-chevron {
     rotate: -90deg;
     transition-duration: .5s;
 }
 
-.nav-container > .category-button-hover > .svg-icon-chevron {
+.nav-container > .categories-button > .svg-icon-chevron {
     fill: var(--cor-branco);
     width: 25px;
     height: 25px;
@@ -203,18 +203,23 @@ nav.nav-container {
 /* ----------------------------------------- */
 /* ESTILO DO MENU DROP DAWN DAS CATEGORIAS */
 
-header .menu-dropdawn-capsule {
+header .categories-button .menu-dropdawn-capsule {
     position: absolute;
     top: 25px;
     padding-top: 1.3em;
-    display: none;
     
 }
 
-.category-button-hover:hover > .menu-dropdawn-capsule {
+/* classe hover mode controla o estado de display none e block do menu-dropdawn-capsule quando sua media query for esta */
+header .categories-button .menu-hover-mode {
+    display: none;
+}
+
+.categories-button-hover:hover > .menu-hover-mode {
     display: block;
     animation: categories-menu-fade 1s;
 }
+
 
 @keyframes categories-menu-fade {
     0% {

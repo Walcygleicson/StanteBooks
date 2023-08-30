@@ -1,0 +1,92 @@
+
+/* TABLETS MEDIAS */
+@media screen and (max-width:1024px) and (min-width: 700px) {
+    
+    .title-logo-container {
+        font-size: .5em;
+        flex-direction: column;
+    }
+
+
+    .title-logo-container > img {
+        width: 27px;
+    }
+
+    .nav-container > .categories-button {
+        cursor: pointer;
+        position: inherit;
+    }
+
+    .nav-container > .categories-button > .svg-icon-chevron,
+    .menu-dropdawn-capsule svg.svg-icon-solid-triangle {
+        display: none;
+    }
+
+    .nav-container > a {
+        margin-left: 3em;
+    }
+
+    .categories-button > .inner-text > svg, .nav-container > a > svg {
+        width: 35px;
+        height: 35px;
+        fill: var(--cor-cinza-alaranjado);
+        background: var(--cor-roxo-02);
+        box-shadow: 1px 1px 1px rgba(29, 2, 45, 0.533);
+        border-radius: 8px;
+        padding: 7px;
+    }
+
+    .categories-button:hover > .inner-text > svg, .nav-container > a:hover > svg{
+        fill: var(--cor-laranjado);
+        transition-duration: .3s;
+        background: var(--cor-roxo-01);
+    }
+
+        .categories-button:active>.inner-text>svg,
+        .nav-container>a:active>svg {
+            transition-duration: .1s;
+            background: var(--cor-roxo-02);
+        }
+
+    nav.nav-container > .categories-button-click > .menu-dropdawn-capsule {
+        top: 3em;
+        left: 50vw;
+        transform: translateX(-50%);
+    }
+
+    .categories-button-click > .hide-menu-click-mode {
+        display: none;
+    }
+    .categories-button-click > .show-menu-click-mode {
+        display: block;
+        animation: categories-menu-fade 1s;
+        }
+
+    .menu-dropdawn-capsule .category-list-container {
+        padding-top: 3em;
+        position: relative;
+    }
+
+    .menu-dropdawn-capsule .category-list-container::before {
+        content: 'Categorias';
+        color: var(--cor-laranjado);
+        font-size: 1.1em;
+        position: absolute;
+        border-bottom: 1px solid rgba(243, 235, 242, 0.204);
+        box-shadow: 0px 1px rgba(114, 114, 114, 0.351) ;
+        width: 95%;
+        letter-spacing: 2px;
+        justify-self: center;
+        text-align: start;
+        text-indent: 1em;
+        font-family: var(--font-navigation);
+        font-weight: bolder;
+        padding: .5em 0 5px 0;
+    }
+
+    .search-books-container {
+        width: 27%;
+    }
+
+    
+}
