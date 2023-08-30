@@ -1,7 +1,7 @@
 // INCORPORA OS STYLES.CSS DOS MÓDULOS AO ARQUIVO HTML AUTOMÁTICAMENTE
 // SELECIONA QUAIS ESTILOS SERÃO UTILIZADOS COM BASE NO TÍTULO DA PAGINA
 
-const STYLES = ['../Modules/Css/Header.css', '../Modules/Css/Header_widescreen.css']
+const STYLES = ['./Modules/Css/Header.css', './Modules/Css/Header_widescreen.css']
 const documentHead = document.querySelector("head");
 const documentTitle = document.querySelector('title')
 
