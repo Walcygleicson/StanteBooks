@@ -66,7 +66,19 @@ const SVG = {
         return `<?xml version="1.0" encoding="UTF-8"?>
 <svg${attr(s,n)}xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M7,0H4A4,4,0,0,0,0,4V7a4,4,0,0,0,4,4H7a4,4,0,0,0,4-4V4A4,4,0,0,0,7,0ZM9,7A2,2,0,0,1,7,9H4A2,2,0,0,1,2,7V4A2,2,0,0,1,4,2H7A2,2,0,0,1,9,4Z"/><path d="M7,13H4a4,4,0,0,0-4,4v3a4,4,0,0,0,4,4H7a4,4,0,0,0,4-4V17A4,4,0,0,0,7,13Zm2,7a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V17a2,2,0,0,1,2-2H7a2,2,0,0,1,2,2Z"/><path d="M20,13H17a4,4,0,0,0-4,4v3a4,4,0,0,0,4,4h3a4,4,0,0,0,4-4V17A4,4,0,0,0,20,13Zm2,7a2,2,0,0,1-2,2H17a2,2,0,0,1-2-2V17a2,2,0,0,1,2-2h3a2,2,0,0,1,2,2Z"/><path d="M14,7h8a1,1,0,0,0,0-2H14a1,1,0,0,0,0,2Z"/></svg>
 `;
+    },
+
+    hamburguer_menu: (s = String(), n = String()) => {
+        return `<?xml version="1.0" encoding="UTF-8"?>
+<svg${attr(s,n)}xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512" height="512">
+<g>
+	<path d="M480,224H32c-17.673,0-32,14.327-32,32s14.327,32,32,32h448c17.673,0,32-14.327,32-32S497.673,224,480,224z"/>
+	<path d="M32,138.667h448c17.673,0,32-14.327,32-32s-14.327-32-32-32H32c-17.673,0-32,14.327-32,32S14.327,138.667,32,138.667z"/>
+	<path d="M480,373.333H32c-17.673,0-32,14.327-32,32s14.327,32,32,32h448c17.673,0,32-14.327,32-32S497.673,373.333,480,373.333z"/>
+</g>
+`;
     }
+    
 };
 
 // Contem links de páginas
@@ -106,14 +118,15 @@ function Header(capsule) {
    
     let stringElements = `
     <div class="title-logo-container">
-            <img class="site-logo" src="#" alt="logo">
-            <h1 class="site-title">
-                <span>${TEXT.title[0]}</span>
-                <span>${TEXT.title[1]}</span>
-            </h1>
-        </div>
+        <img class="site-logo" src="#" alt="logo">
+        <h1 class="site-title">
+            <span>${TEXT.title[0]}</span>
+            <span>${TEXT.title[1]}</span>
+        </h1>
+    </div>
 
         <!-- MENU DE NAVEGAÇÃO -->
+        <button class="hamburger-menu-button">${SVG.hamburguer_menu()}</button>
         <nav class="nav-container">
             <!--Abrirá um menu dropdawn ao passar o cursor sobre este button-->
             <button class="categories-button categories-button-hover">

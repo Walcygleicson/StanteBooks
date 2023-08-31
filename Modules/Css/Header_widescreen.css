@@ -108,6 +108,7 @@
 @media  screen and (max-width: 700px) {
 
     header #header-elements-enveloper {
+        position: relative;
         flex-direction: column;
         row-gap: .5em;
         
@@ -122,8 +123,20 @@
     }
 
     header .nav-container {
-        
+        position: absolute;
+        flex-direction: column;
+        width: 350px;
+        top: 4em;
+        border-radius: 5px;
+        background: linear-gradient(to bottom, var(--cor-roxo-01), var(--cor-roxo-02));
+    }
+
+    .nav-container > .categories-button > svg {
         display: none;
+    }
+
+    header .nav-container  * {
+        border: 1px solid red;
     }
 
     header .search-books-container {
@@ -131,8 +144,55 @@
         height: 26px;
     }
 
+    header .hamburger-menu-button {
+        display: block;
+        position: absolute;
+        left: 2%;
+        box-shadow: 2px 2px 2px rgba(31, 1, 45, 0.201);
+        padding: .3em;
+        display: flex;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        outline: none;
+        background: var(--cor-roxo-02);
+
+    }
+
+    header .hamburger-menu-button:hover, header .hamburger-menu-button:hover > svg {
+        background: var(--cor-roxo-01);
+        fill: var(--cor-laranjado);
+        transition-duration: .2s;
+    }
+
+    header .hamburger-menu-button:active {
+        background: var(--cor-roxo-02);
+    }
+
+    header .hamburger-menu-button > svg {
+        width: 30px;
+        height: 30px;
+        fill: var(--cor-branco);
+        pointer-events: none;
+    }
+
     header .user-menu-container {
+        padding: 3em 1.5em 1em 1.5em;
+        border: 1px solid rgba(242, 242, 242, 0.585);
+        background: var(--cor-branco);
+        box-shadow: 2px 2px 2px rgba(187, 187, 187, 0.241);
+        border-radius: 0 0 5px 5px;
+        bottom: -4em;
+        z-index: -3;
+        position: absolute;
+    }
+
+    #user-log-on {
         display: none;
+    }
+
+    #user-log-off {
+        display: block;
     }
     
 }
