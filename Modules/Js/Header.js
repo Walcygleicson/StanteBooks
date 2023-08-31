@@ -71,10 +71,10 @@ const SVG = {
 
 // Contem links de páginas
 const LINKS = {
-    Escrever: '#',
+    Escrever: '',
     Estante: '#',
     Explorar: '#',
-    ToCategoryPage: '###'
+    ToCategoryPage: 'youtube.com'
 
 }
 
@@ -180,30 +180,46 @@ function Header(capsule) {
     // Evento de click no botão do perfil do usuário
     let toggleUserMenuButton = false
     capsule.querySelector('.open-user-menu-button').addEventListener('click', () => {
+        const userMenuCapsule = capsule.querySelector(".user-menu-capsule")
         capsule.querySelector('.hint-box').classList.toggle('hint-box-fade')
+
         if (!toggleUserMenuButton) {
-            capsule.querySelector('.user-menu-capsule').style.display = 'block'
+            userMenuCapsule.style.display = 'block'
             
         } else {
-            capsule.querySelector(".user-menu-capsule").style.display = "none";
+            userMenuCapsule.style.display = "none";
         }
 
         toggleUserMenuButton = !toggleUserMenuButton
+        // Fecha a aba de categorias, se estiver aberta, quando o botão de perfil for clicado
+        if (capsule.querySelector('.menu-dropdawn-capsule').classList.contains('show-menu-click-mode')) {
+            capsule.querySelector('.menu-dropdawn-capsule').classList.remove('show-menu-click-mode')
+            capsule.querySelector(".menu-dropdawn-capsule").classList.add("hide-menu-click-mode");
+            capsule.querySelector(".categories-button > .inner-text").innerHTML = SVG.more_categories();
+        }
         
     })
 
     // Evento de click no botão de categorias para mídias em tablets
-    let showCategoryToggle = false
     const categoriesButton = capsule.querySelector('.categories-button')
-    categoriesButton.addEventListener('click', () => {
+    categoriesButton.addEventListener('click', (evt) => {
+        console.log(evt.target)
         
         if (categoriesButton.classList.contains('categories-button-click')) {
             const menuDropdawnCapsule = capsule.querySelector('.menu-dropdawn-capsule')
             menuDropdawnCapsule.classList.toggle('show-menu-click-mode')
             menuDropdawnCapsule.classList.toggle("hide-menu-click-mode");
 
+            // Esconde a aba do perfil do usuário, se estiver aberta, ao clicar no botão das categorias
+            if (document.querySelector('.user-menu-capsule').checkVisibility()) {
+                toggleUserMenuButton = false
+                document.querySelector('.user-menu-capsule').style.display = 'none'
+            }
+            
+
             if (menuDropdawnCapsule.classList.contains('show-menu-click-mode')) {
                 capsule.querySelector(".categories-button > .inner-text").innerHTML = SVG.less_categories();
+                capsule.querySelector('.inner-text > svg').style.fill = 'var(--cor-laranjado)'
             } else if (menuDropdawnCapsule.classList.contains('hide-menu-click-mode')) {
                 capsule.querySelector(".categories-button > .inner-text").innerHTML = SVG.more_categories()
             }

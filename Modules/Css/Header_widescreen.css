@@ -1,6 +1,6 @@
 
 /* TABLETS MEDIAS */
-@media screen and (max-width:1024px) and (min-width: 700px) {
+@media screen and (max-width:1024px) and (min-width: 701px) {
     
     .title-logo-container {
         font-size: .5em;
@@ -26,6 +26,16 @@
         margin-left: 3em;
     }
 
+    /* Evitar que os elemento dentro do botão seja clicavel e dispare eventos de click */
+    .inner-text, .inner-text > svg, .menu-dropdawn-capsule {
+        pointer-events: none;
+    }
+
+    .menu-dropdawn-capsule .category-list-container > li {
+        pointer-events: all;
+    }
+
+
     .categories-button > .inner-text > svg, .nav-container > a > svg {
         width: 35px;
         height: 35px;
@@ -50,6 +60,7 @@
 
     nav.nav-container > .categories-button-click > .menu-dropdawn-capsule {
         top: 3em;
+        cursor: default;
         left: 50vw;
         transform: translateX(-50%);
     }
@@ -60,7 +71,8 @@
     .categories-button-click > .show-menu-click-mode {
         display: block;
         animation: categories-menu-fade 1s;
-        }
+    }
+
 
     .menu-dropdawn-capsule .category-list-container {
         padding-top: 3em;
@@ -88,5 +100,39 @@
         width: 27%;
     }
 
+    
+}
+
+/* MOBILES MEDIAS */
+
+@media  screen and (max-width: 700px) {
+
+    header #header-elements-enveloper {
+        flex-direction: column;
+        row-gap: .5em;
+        
+    }
+   
+    header .title-logo-container > .site-logo {
+        width: 20px;
+    }
+
+    header .title-logo-container > .site-title {
+        font-size: 1.1em;
+    }
+
+    header .nav-container {
+        
+        display: none;
+    }
+
+    header .search-books-container {
+        width: 50%;
+        height: 26px;
+    }
+
+    header .user-menu-container {
+        display: none;
+    }
     
 }
