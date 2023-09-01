@@ -76,19 +76,33 @@ const SVG = {
 	<path d="M32,138.667h448c17.673,0,32-14.327,32-32s-14.327-32-32-32H32c-17.673,0-32,14.327-32,32S14.327,138.667,32,138.667z"/>
 	<path d="M480,373.333H32c-17.673,0-32,14.327-32,32s14.327,32,32,32h448c17.673,0,32-14.327,32-32S497.673,373.333,480,373.333z"/>
 </g>
+</svg>
 `;
+    },
+
+    categories: (s = String(), n = String()) => {
+        return `<?xml version="1.0" encoding="UTF-8"?>
+<svg${attr(s,n)}xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M7,0H4A4,4,0,0,0,0,4V7a4,4,0,0,0,4,4H7a4,4,0,0,0,4-4V4A4,4,0,0,0,7,0ZM9,7A2,2,0,0,1,7,9H4A2,2,0,0,1,2,7V4A2,2,0,0,1,4,2H7A2,2,0,0,1,9,4Z"/><path d="M20,0H17a4,4,0,0,0-4,4V7a4,4,0,0,0,4,4h3a4,4,0,0,0,4-4V4A4,4,0,0,0,20,0Zm2,7a2,2,0,0,1-2,2H17a2,2,0,0,1-2-2V4a2,2,0,0,1,2-2h3a2,2,0,0,1,2,2Z"/><path d="M7,13H4a4,4,0,0,0-4,4v3a4,4,0,0,0,4,4H7a4,4,0,0,0,4-4V17A4,4,0,0,0,7,13Zm2,7a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V17a2,2,0,0,1,2-2H7a2,2,0,0,1,2,2Z"/><path d="M20,13H17a4,4,0,0,0-4,4v3a4,4,0,0,0,4,4h3a4,4,0,0,0,4-4V17A4,4,0,0,0,20,13Zm2,7a2,2,0,0,1-2,2H17a2,2,0,0,1-2-2V17a2,2,0,0,1,2-2h3a2,2,0,0,1,2,2Z"/></svg>`
+    },
+
+    close_all: (s = String(), n = String()) => {
+        return `<?xml version="1.0" encoding="UTF-8"?>
+<svg${attr(s,n)}xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512.021 512.021" style="enable-background:new 0 0 512.021 512.021;" xml:space="preserve" width="512" height="512">
+<g>
+	<path d="M301.258,256.01L502.645,54.645c12.501-12.501,12.501-32.769,0-45.269c-12.501-12.501-32.769-12.501-45.269,0l0,0   L256.01,210.762L54.645,9.376c-12.501-12.501-32.769-12.501-45.269,0s-12.501,32.769,0,45.269L210.762,256.01L9.376,457.376   c-12.501,12.501-12.501,32.769,0,45.269s32.769,12.501,45.269,0L256.01,301.258l201.365,201.387   c12.501,12.501,32.769,12.501,45.269,0c12.501-12.501,12.501-32.769,0-45.269L301.258,256.01z"/>
+</g>
+</svg>`;
     }
     
 };
 
 // Contem links de páginas
 const LINKS = {
-    Escrever: '',
-    Estante: '#',
-    Explorar: '#',
-    ToCategoryPage: 'youtube.com'
-
-}
+    Escrever: "https://youtube.com",
+    Estante: "https://youtube.com",
+    Explorar: "#",
+    ToCategoryPage: "youtube.com",
+};
 
 // Lista de caminhos de arquivos
 const PATH = {
@@ -102,6 +116,9 @@ const CATEGORIES = [
     'Terror Psicológico', 'Thriller', 'Ação', 'Horror Cósmico', 'Romance',
     'Comédia', 'Não Ficção', 'Fanfics', 'Poesia', 'Hot', 'Policial'
 ]
+
+//VARIÁVEIS
+let mediaType = 'desktop'
 
 
 
@@ -215,32 +232,65 @@ function Header(capsule) {
 
     // Evento de click no botão de categorias para mídias em tablets
     const categoriesButton = capsule.querySelector('.categories-button')
-    categoriesButton.addEventListener('click', (evt) => {
-        console.log(evt.target)
-        
-        if (categoriesButton.classList.contains('categories-button-click')) {
-            const menuDropdawnCapsule = capsule.querySelector('.menu-dropdawn-capsule')
-            menuDropdawnCapsule.classList.toggle('show-menu-click-mode')
-            menuDropdawnCapsule.classList.toggle("hide-menu-click-mode");
+    categoriesButton.addEventListener('click', () => {
 
-            // Esconde a aba do perfil do usuário, se estiver aberta, ao clicar no botão das categorias
-            if (document.querySelector('.user-menu-capsule').checkVisibility()) {
-                toggleUserMenuButton = false
-                document.querySelector('.user-menu-capsule').style.display = 'none'
-            }
-            
+        // TABLETS
+        if (mediaType == 'tablet') {
+            if (
+                categoriesButton.classList.contains("categories-button-click")
+            ) {
+                const menuDropdawnCapsule = capsule.querySelector(
+                    ".menu-dropdawn-capsule"
+                );
+                menuDropdawnCapsule.classList.toggle("show-menu-click-mode");
+                menuDropdawnCapsule.classList.toggle("hide-menu-click-mode");
 
-            if (menuDropdawnCapsule.classList.contains('show-menu-click-mode')) {
-                capsule.querySelector(".categories-button > .inner-text").innerHTML = SVG.less_categories();
-                capsule.querySelector('.inner-text > svg').style.fill = 'var(--cor-laranjado)'
-            } else if (menuDropdawnCapsule.classList.contains('hide-menu-click-mode')) {
-                capsule.querySelector(".categories-button > .inner-text").innerHTML = SVG.more_categories()
+                // Esconde a aba do perfil do usuário, se estiver aberta, ao clicar no botão das categorias
+                if (
+                    document
+                        .querySelector(".user-menu-capsule")
+                        .checkVisibility()
+                ) {
+                    toggleUserMenuButton = false;
+                    document.querySelector(".user-menu-capsule").style.display =
+                        "none";
+                }
+
+                if (
+                    menuDropdawnCapsule.classList.contains(
+                        "show-menu-click-mode"
+                    )
+                ) {
+                    capsule.querySelector(
+                        ".categories-button > .inner-text"
+                    ).innerHTML = SVG.less_categories();
+                    capsule.querySelector(".inner-text > svg").style.fill =
+                        "var(--cor-laranjado)";
+                } else if (
+                    menuDropdawnCapsule.classList.contains(
+                        "hide-menu-click-mode"
+                    )
+                ) {
+                    capsule.querySelector(
+                        ".categories-button > .inner-text"
+                    ).innerHTML = SVG.more_categories();
+                }
             }
-            
-            
         }
         
-        
+    })
+
+    const hamburgerButton = capsule.querySelector('.hamburger-menu-button')
+    const navBar = capsule.querySelector('.nav-container')
+    hamburgerButton.addEventListener('click', () => {
+        navBar.classList.toggle('mobile-nav-closed')
+        navBar.classList.toggle('mobile-nav-opened')
+
+        if (navBar.classList.contains('mobile-nav-closed')) {
+            hamburgerButton.innerHTML = SVG.hamburguer_menu()
+        } else if (navBar.classList.contains('mobile-nav-opened')) {
+            hamburgerButton.innerHTML = SVG.close_all()
+        }
     })
     
 }
@@ -342,6 +392,7 @@ function insert_userMenu(rootCapsule, innerCapsuleQuery) {
 
 // WINDOW RESIZE EVENTS
 function mediaSize(event) {
+    console.log(mediaType)
     const windowSize = {
         width: event.currentTarget.innerWidth,
         height: event.currentTarget.innerHeight
@@ -353,7 +404,8 @@ function mediaSize(event) {
     const categoriesButton = document.querySelector('.categories-button')
     const menuDropdawnCapsule = document.querySelector('.menu-dropdawn-capsule')
 
-    if (windowSize.width <= 1024 && windowSize.width >= 700) {
+    if (windowSize.width <= 1024 && windowSize.width >= 701) {
+        mediaType = 'tablet'
         menuDropdawnCapsule.classList.add('hide-menu-click-mode')
         menuDropdawnCapsule.classList.remove('show-menu-click-mode')
         menuDropdawnCapsule.classList.remove('menu-hover-mode')
@@ -367,6 +419,7 @@ function mediaSize(event) {
         navElements_A.children[3].innerHTML = SVG.explore()
 
     } else if (windowSize.width >= 1024) {
+        mediaType = 'desktop'
         menuDropdawnCapsule.classList.remove('show-menu-click-mode')
         menuDropdawnCapsule.classList.remove("hide-menu-click-mode");
         menuDropdawnCapsule.classList.add('menu-hover-mode')
@@ -376,6 +429,20 @@ function mediaSize(event) {
         navElements_A.children[1].innerHTML = TEXT.navEscrever;
         navElements_A.children[2].innerHTML = TEXT.navEstante;
         navElements_A.children[3].innerHTML = TEXT.navExplorar;
+    } else if (windowSize.width <= 700) {
+        mediaType = 'mobile'
+        menuDropdawnCapsule.classList.remove("show-menu-click-mode");
+        menuDropdawnCapsule.classList.remove("hide-menu-click-mode");
+        categoriesButton.classList.remove("categories-button-hover");
+        categoriesButton.classList.remove("categories-button-click");
+        menuDropdawnCapsule.classList.remove("menu-hover-mode");
+        navElements_A.classList.add('mobile-nav-closed')
+        navElements_A.classList.remove('mobile-nav-opened')
+
+        catInnerTxt.innerHTML = SVG.categories("class", "svg-mobile-icons") + `<span>${TEXT.navCategorias}</span>`;
+        navElements_A.children[1].innerHTML = SVG.write_books('class', 'svg-mobile-icons') + `<span>${TEXT.navEscrever}</span>`
+        navElements_A.children[2].innerHTML = SVG.library("class", "svg-mobile-icons") + `<span>${TEXT.navEstante}</span>`;
+        navElements_A.children[3].innerHTML = SVG.explore("class", "svg-mobile-icons") + `<span>${TEXT.navExplorar}</span>`;
     }
     
 

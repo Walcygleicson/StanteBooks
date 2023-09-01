@@ -103,6 +103,8 @@
     
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
 /* MOBILES MEDIAS */
 
 @media  screen and (max-width: 700px) {
@@ -124,19 +126,65 @@
 
     header .nav-container {
         position: absolute;
+        padding: 1em;
+        padding-left: 4em;
         flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        row-gap: 1em;
         width: 350px;
-        top: 4em;
-        border-radius: 5px;
+        height: 100vh;
+        top: 4.0em;
+        /* left: -1em; */
         background: linear-gradient(to bottom, var(--cor-roxo-01), var(--cor-roxo-02));
+        box-shadow: 3px 2px 3px  rgba(45, 4, 44, 0.29);
+    }
+
+    /* Animações de open e close da barra alteral de navegação controlado pelas class mobile-nav-opened e mobile-nav-closed*/
+
+    header .mobile-nav-closed {
+        transition-duration: 1s;
+        left: -24em;
+    }
+
+    header .mobile-nav-opened {
+        transition-duration: 1s;
+        left: -1em;
+    }
+
+
+    .nav-container > .categories-button {
+        width: 100%;
     }
 
     .nav-container > .categories-button > svg {
         display: none;
     }
 
-    header .nav-container  * {
-        border: 1px solid red;
+    .nav-container .svg-mobile-icons {
+        width: 25px;
+        height: 25px;
+    }
+
+
+    .nav-container > .categories-button > .inner-text, .nav-container > a {
+        box-shadow: 2px 2px 2px rgba(31, 1, 45, 0.201);
+        border-radius: 5px;
+        background: var(--cor-roxo-01);
+        margin: 0;
+        font-size: .9em;
+        display: flex;
+        column-gap: 1em;
+        cursor: pointer;
+        letter-spacing: 2px;
+        width: 100%;
+        padding: 3px 4em 3px 3px;
+        align-items: center;
+    }
+
+    .nav-container > .categories-button > .inner-text svg, .nav-container > a > svg {
+        fill: var(--cor-branco);
+        padding: 4px;
     }
 
     header .search-books-container {
@@ -174,6 +222,10 @@
         height: 30px;
         fill: var(--cor-branco);
         pointer-events: none;
+    }
+
+    .menu-dropdawn-capsule {
+        display: none;
     }
 
     header .user-menu-container {
