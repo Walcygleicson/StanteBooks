@@ -95,6 +95,10 @@ header.header-capsule {
 
 
 /* CONFIG DA NAV*/
+nav.nav-container > .user-infos-capsule {
+    display: none;
+}
+
 nav.nav-container {
     display: flex;
     align-items: center;
@@ -108,6 +112,10 @@ nav.nav-container {
     font-family: var(--font-navigation);
     text-decoration: none;
     letter-spacing: 1px;
+}
+
+.nav-container .nav-menu-icon {
+    display: none;
 }
 
 
@@ -208,6 +216,7 @@ nav.nav-container {
 /* ESTILO DO MENU DROP DAWN DAS CATEGORIAS */
 
 header .categories-button .menu-dropdawn-capsule {
+    display: none;
     position: absolute;
     top: 25px;
     padding-top: 1.3em;
@@ -215,11 +224,9 @@ header .categories-button .menu-dropdawn-capsule {
 }
 
 /* classe hover mode controla o estado de display none e block do menu-dropdawn-capsule quando sua media query for esta */
-header .categories-button .menu-hover-mode {
-    display: none;
-}
 
-.categories-button-hover:hover > .menu-hover-mode {
+
+.categories-button-hover:hover > .menu-dropdawn-capsule {
     display: block;
     animation: categories-menu-fade 1s;
 }
