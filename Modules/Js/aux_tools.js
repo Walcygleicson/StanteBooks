@@ -204,7 +204,18 @@ function getWindowMedias(vector='media') {
 }
 
 
+let USER = {
+    login: () => {
+        const logCheck = document.querySelector('.header-capsule .user-menu-container')
+        if (logCheck.id == 'user-log-on') {
+            return true
+        } else if (logCheck.id == 'user-log-off') {
+            return false
+        }
+    }
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //EXPORTS
-export {SVG, BREAK_POINTS, getWindowMedias}
+export {SVG, BREAK_POINTS, getWindowMedias, USER}

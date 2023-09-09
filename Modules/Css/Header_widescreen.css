@@ -1,5 +1,6 @@
 
 /* TABLETS MEDIAS */
+
 @media screen and (max-width:1024px) and (min-width: 701px) {
     
     .title-logo-container {
@@ -159,8 +160,37 @@
     }
 
     /* Capsula de foto/login/registro do usuário na barra de navegação lateral */
-    nav.nav-container > .user-infos-capsule {
+
+   .user-on {
         display: block;
+    }
+    .user-off > .user-page-link,
+    .user-off .profile-generic-settings > .navigation-itens,
+    .user-off  .log-off-button{
+        display: none;
+        
+    }
+
+    .user-off .login-register-buttons-container {
+        display: block;
+        margin-top: 2em;
+        border: 1px solid gray;
+        padding: 1em;
+        display: flex;
+        justify-content: space-between;
+        background: rgb(240, 233, 244);
+        border-radius: 5px;
+        box-shadow: 4px 4px 5px rgba(45, 4, 44, 0.216);
+    }
+
+    .user-off .login-register-buttons-container > button {
+        color: var(--cor-cinza-alaranjado);
+    }
+    .user-off .login-register-buttons-container > button:hover {
+        background: var(--cor-amarelo-alaranjado);
+    }
+
+    nav.nav-container > .user-infos-capsule {
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -190,7 +220,6 @@
         row-gap: .5em;
     }
     .user-infos-capsule > .profile-generic-settings > * {
-        color: var(--cor-cinza-alaranjado);
         width: 100%;
         text-indent: 0;
     }
@@ -200,18 +229,12 @@
         background: var(--cor-roxo-01);
     }
 
-    .user-infos-capsule > .login-register-buttons-container {
-        border: 1px solid white;
-        display: none;
-    }
-
     .user-infos-capsule > .login-register-buttons-container > button {
         outline: none;
         border: none;
         padding: .3em 1.5em;
         font-family: var(--font-navigation);
         background: var(--cor-laranja-01);
-        color: var(--cor-branco);
         border-radius: 4px;
         box-shadow: 2px 2px 3px rgba(83, 20, 60, 0.429);
         cursor: pointer;
@@ -246,10 +269,7 @@
     }
 
 
-    .nav-container > .categories-button,
-    .nav-container > a,
-    .user-infos-capsule > .profile-generic-settings > *,
-    .profile-settings-capsule > .profile-settings-menu > a {
+    nav.nav-container .navigation-itens {
         box-shadow: 2px 2px 2px rgba(31, 1, 45, 0.201);
         border-radius: 5px;
         background: var(--cor-roxo-01);
@@ -262,7 +282,7 @@
         align-items: center;
     }
 
-    nav.nav-container span.inner-text {
+    nav.nav-container .navigation-itens span.inner-text {
         font-family: var(--font-navigation);
         letter-spacing: 2px;
         font-size: 15px;
@@ -270,16 +290,22 @@
         color: var(--cor-cinza-alaranjado);
     }
 
-    .nav-container svg.nav-menu-icon{
+    .navigation-itens svg.nav-menu-icon{
         fill: var(--cor-branco);
         padding: 4px;
     }
 
-    .categories-button:hover svg.nav-menu-icon,
-    .nav-container > a:hover > svg.nav-menu-icon,
-    .profile-generic-settings > *:hover > svg.nav-menu-icon {
+    nav.nav-container .navigation-itens:hover > span.inner-text,
+    button.navigation-itens:hover > span.inner-text,
+    nav.nav-container .log-off-button:hover {
+        color: var(--cor-laranjado);
+        transition-duration: .2s;
+    }
+
+    
+    .navigation-itens:hover > svg.nav-menu-icon, button.navigation-itens:hover > .icon-container > svg.nav-menu-icon {
         fill: var(--cor-laranjado);
-        transition-duration: .3s;
+        transition-duration: .2s;
     }
 
     .nav-container > .open-user-menu-button > img {
@@ -290,6 +316,21 @@
 
     .nav-container > .open-user-menu-button > .hint-box {
         display: none;
+    }
+
+    nav.nav-container button.log-off-button {
+        width: 50%;
+        align-self: center;
+        margin-top: 1.5em;
+        padding: 4px;
+        border-radius: 4px;
+        outline: none;
+        border: none;
+        background: var(--cor-roxo-01);
+        box-shadow: 2px 2px 2px rgba(31, 1, 45, 0.237);
+        font-family: var(--font-navigation);
+        color: var(--cor-cinza-alaranjado);
+        cursor: pointer;
     }
 
     header .search-books-container {

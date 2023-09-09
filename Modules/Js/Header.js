@@ -1,4 +1,4 @@
-import { SVG, getWindowMedias} from "./aux_tools.js";
+import { SVG, getWindowMedias, USER} from "./aux_tools.js";
 
 // PROPRIEDADES DE OBJETOS
 // lista de todo o conteúdo de texto padrão dos elementos HTML
@@ -78,7 +78,7 @@ function Header(capsule) {
             <div class="user-infos-capsule"></div>
 
             <!--Abre um menu dropdawn com hover-->
-            <button class="categories-button categories-button-hover">
+            <button class="categories-button categories-button-hover navigation-itens">
                 <!-- Capsula para inserir o menu dropdawn das categorias-->
                 <div class="menu-dropdawn-capsule"></div>
 
@@ -87,9 +87,17 @@ function Header(capsule) {
                 ${SVG.chevron('class', 'svg-icon-chevron')}
             </button>
 
-            <a href=${LINKS.Escrever}>${SVG.write_books('class', 'nav-menu-icon')} <span class="inner-text">${TEXT.navEscrever}</span></a>
-            <a href=${LINKS.Estante}>${SVG.library('class', 'nav-menu-icon')} <span class="inner-text">${TEXT.navEstante}</span></a>
-            <a href=${LINKS.Explorar}>${SVG.explore('class', 'nav-menu-icon')}  <span class="inner-text">${TEXT.navExplorar}</span></a>
+            <a class="navigation-itens" href=${LINKS.Escrever}>
+                ${SVG.write_books('class', 'nav-menu-icon')} <span class="inner-text">${TEXT.navEscrever}</span>
+            </a>
+
+            <a class="navigation-itens" href=${LINKS.Estante}>
+                ${SVG.library('class', 'nav-menu-icon')} <span class="inner-text">${TEXT.navEstante}</span>
+            </a>
+
+            <a class="navigation-itens" href=${LINKS.Explorar}>
+                ${SVG.explore('class', 'nav-menu-icon')}  <span class="inner-text">${TEXT.navExplorar}</span>
+            </a>
 
             <!-- Modo Mobile - Capsula para inserir as configurações gerais do perfil, se o usuário estiver logado-->
             <div class="profile-settings-capsule"></div>
@@ -105,7 +113,7 @@ function Header(capsule) {
 
         <!-- PERFIL DO USUÁRIO -->
         <!-- Os estados e style de user logado e user não logado são controlado pelo id-->
-        <div class="user-menu-container" id="user-log-on">
+        <div class="user-menu-container" id="user-log-off">
 
             <button class="open-user-menu-button">
                 <img class="user-picture-profile" src="${PATH.teste}" alt="Foto de Perfil do Usuário">
@@ -318,6 +326,15 @@ function actualizeScreen() {
         navContainer.classList.add('mobile-nav-closed')
         navContainer.classList.remove('mobile-nav-opened')
 
+        if (USER.login()) {
+            nav_profileSettCapsule.classList.add('user-on')
+            nav_userInfosCapsule.classList.add('user-on')
+        } else {
+            nav_profileSettCapsule.classList.add('user-off')
+            nav_userInfosCapsule.classList.add('user-off')
+        }
+        
+
         // Adiciona um clone dos elementos de usuário às cápsulas, se elas estiverem vazias
         if (!nav_userInfosCapsule.hasChildNodes()) {
             const userPic = document.querySelector('.user-profile-infos > a.user-page-link')
@@ -326,37 +343,35 @@ function actualizeScreen() {
             nav_userInfosCapsule.appendChild(userPic.cloneNode(true))
             nav_userInfosCapsule.appendChild(loginRegisterButtons.cloneNode(true))
 
-            // Inserir icone SVG e reorganizar conteúdo
+            
             const clone_profileSett = profileSett.cloneNode(true)
-            clone_profileSett.children[0].innerHTML = `
-                ${SVG.envelope('class', 'nav-menu-icon')}
-                <span class="inner-text"> ${TEXT.mesgBox} </span>
-            `
-             clone_profileSett.children[1].innerHTML = `
-                ${SVG.two_users('class', 'nav-menu-icon')}
-                <span class="inner-text"> ${TEXT.trocarUser} </span>
-            `
+            const svgList = [SVG.envelope, SVG.two_users]
+            const textList = [TEXT.mesgBox, TEXT.trocarUser]
+
+            // Percorre os elementos e insere um classe, texto e icone svg
+            for (let i=0; i < clone_profileSett.children.length; i++) {
+                clone_profileSett.children[i].classList.add('navigation-itens')
+                clone_profileSett.children[i].innerHTML = `
+                    ${svgList[i]('class', 'nav-menu-icon')}
+                    <span class="inner-text"> ${textList[i]} </span>`
+            }
             nav_userInfosCapsule.appendChild(clone_profileSett)
         }
 
         if (!nav_profileSettCapsule.hasChildNodes()) {
             const profileSettMenu = document.querySelector('.user-profile-settings > .profile-settings-menu')
             const clone_profileSettMenu = profileSettMenu.cloneNode(true)
-            clone_profileSettMenu.children[0].innerHTML = `
-                ${SVG.comment_baloon('class', 'nav-menu-icon')}
-                <span class="inner-text"> ${TEXT.sendFeedback} </span>
-            `
-            clone_profileSettMenu.children[1].innerHTML = `
-                ${SVG.settings('class', 'nav-menu-icon')}
-                <span class="inner-text"> ${TEXT.config} </span>
-            `
-            clone_profileSettMenu.children[2].innerHTML = `
-                ${SVG.help('class', 'nav-menu-icon')}
-                <span class="inner-text"> ${TEXT.help_suport} </span>
-            `
+            const svgList = [SVG.comment_baloon, SVG.settings, SVG.help]
+            const textList = [TEXT.sendFeedback, TEXT.config, TEXT.help_suport]
 
+            for (let i=0; i < clone_profileSettMenu.children.length - 1; i++) {
+                clone_profileSettMenu.children[i].classList.add('navigation-itens')
+                clone_profileSettMenu.children[i].innerHTML = `
+                    ${svgList[i]('class', 'nav-menu-icon')}
+                    <span class="inner-text"> ${textList[i]} </span>`
+            }
             nav_profileSettCapsule.appendChild(clone_profileSettMenu)
-            console.log(clone_profileSettMenu.children[0])
+         
         }
 
  
