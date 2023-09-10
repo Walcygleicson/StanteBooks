@@ -361,6 +361,8 @@
 
     }
 
+
+
     header .hamburger-menu-button:hover, header .hamburger-menu-button:hover > svg {
         background: var(--cor-roxo-01);
         fill: var(--cor-laranjado);
@@ -383,26 +385,48 @@
         display: none;
     }
 
-    header .user-menu-container {
+    /* header .user-menu-container {
         padding: 3em 1.5em 1em 1.5em;
         border: 1px solid rgba(242, 242, 242, 0.585);
         background: var(--cor-branco);
         box-shadow: 2px 2px 2px rgba(187, 187, 187, 0.241);
         border-radius: 0 0 5px 5px;
-        z-index: -3;
         position: absolute;
+        z-index: -30;
+    } */
+
+    header .user-menu-container {
+        padding: 6px;
+        width: 100vw;
+        border: 1px solid rgba(230, 230, 230, 0.897);
+        background: rgb(255, 255, 255);
+        box-shadow: 2px 2px 2px rgba(187, 187, 187, 0.073);
+        position: absolute;
+        top: 4.2em;
+    }
+
+    header .user-menu-container > .login-register-buttons-container {
+        width: 93vw;
+        justify-content: flex-end;
+    }
+
+    #user-log-off > .login-register-buttons-container > .login-button, #user-log-off>.login-register-buttons-container> .register-button {
+    box-shadow: none;
+    font-size: .6em;
+    border: 1px solid rgb(233, 111, 18);
     }
 
 
     /* Controle da animação de deslize do container de botões login / registro */
     .log-container-slide-dawn {
-        transition: bottom 1.5s;
-        bottom: -4em;
+        transition: right 1.5s;
+        right: 0;
     }
 
     .log-container-slide-up {
-        transition: bottom 1s;
-        bottom: 0;
+        transition: right 1s;
+        right: 100vw;
+       
     }
 
 
