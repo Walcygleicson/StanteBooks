@@ -99,6 +99,10 @@ nav.nav-container > .user-infos-capsule {
     display: none;
 }
 
+nav.nav-container > .profile-settings-capsule {
+    display: none;
+}
+
 nav.nav-container {
     display: flex;
     align-items: center;

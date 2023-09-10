@@ -215,7 +215,25 @@ let USER = {
     }
 }
 
+/**
+ * Objeto literal de propriedades de auxílio
+ */
+
+let AUX = {
+    /**
+     * #### Substitui um nome de classe de um elemento HTMl por outro nome.
+     * 
+     * @param {Element} element - O elemento HTML que contém a *classe* a ser substituída.
+     * @param {string} remove - O nome da *classe* a ser substituído por **add**
+     * @param {string} add - O novo nome da *classe* que substitui o antigo **remove**
+     */
+    replaceClassName: (element, remove, add) => {
+        element.classList.remove(remove)
+        element.classList.add(add)
+    }
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //EXPORTS
-export {SVG, BREAK_POINTS, getWindowMedias, USER}
+export {SVG, BREAK_POINTS, getWindowMedias, USER, AUX}

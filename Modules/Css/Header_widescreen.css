@@ -161,14 +161,22 @@
 
     /* Capsula de foto/login/registro do usuário na barra de navegação lateral */
 
-   .user-on {
+    nav.nav-container .user-on {
         display: block;
     }
+
+    nav.nav-container .user-off {
+        display: block;
+    }
+
+    .user-on .login-register-buttons-container {
+        display: none;
+    }
+
     .user-off > .user-page-link,
     .user-off .profile-generic-settings > .navigation-itens,
     .user-off  .log-off-button{
-        display: none;
-        
+        display: none; 
     }
 
     .user-off .login-register-buttons-container {
@@ -381,10 +389,22 @@
         background: var(--cor-branco);
         box-shadow: 2px 2px 2px rgba(187, 187, 187, 0.241);
         border-radius: 0 0 5px 5px;
-        bottom: -4em;
         z-index: -3;
         position: absolute;
     }
+
+
+    /* Controle da animação de deslize do container de botões login / registro */
+    .log-container-slide-dawn {
+        transition: bottom 1.5s;
+        bottom: -4em;
+    }
+
+    .log-container-slide-up {
+        transition: bottom 1s;
+        bottom: 0;
+    }
+
 
     #user-log-on {
         display: none;

@@ -1,4 +1,4 @@
-import { SVG, getWindowMedias, USER} from "./aux_tools.js";
+import { SVG, getWindowMedias, USER, AUX} from "./aux_tools.js";
 
 // PROPRIEDADES DE OBJETOS
 // lista de todo o conteúdo de texto padrão dos elementos HTML
@@ -181,6 +181,21 @@ function Header(capsule) {
     const hamburgerButton = capsule.querySelector('.hamburger-menu-button')
     const navBar = capsule.querySelector('.nav-container')
     hamburgerButton.addEventListener('click', () => {
+        const loginRegisterContainer = document.querySelector('.user-menu-container')
+
+        // Esconde a aba de login/ registro ao abrir a barra de navegação lateral se o usuário não estiver logado
+        if (!USER.login()) {
+            const x = loginRegisterContainer.classList.contains('log-container-slide-dawn')
+            const y = navBar.classList.contains('mobile-nav-closed')
+            if (x && y) {
+
+                AUX.replaceClassName(loginRegisterContainer, 'log-container-slide-dawn', 'log-container-slide-up')
+
+            } else {
+                AUX.replaceClassName(loginRegisterContainer, 'log-container-slide-up','log-container-slide-dawn')
+            }
+        }
+
         navBar.classList.toggle('mobile-nav-closed')
         navBar.classList.toggle('mobile-nav-opened')
 
@@ -189,6 +204,22 @@ function Header(capsule) {
         } else if (navBar.classList.contains('mobile-nav-opened')) {
             hamburgerButton.innerHTML = SVG.close_all()
         }
+    })
+
+    // Evento de Scroll
+    window.addEventListener('scroll', (evt) => {
+        const loginRegisterContainer = document.querySelector('.user-menu-container')
+        const scrollPosition = evt.currentTarget.scrollY
+        if (navBar.classList.contains('mobile-nav-closed')) {
+            if (scrollPosition > 5) {
+                AUX.replaceClassName(loginRegisterContainer, 'log-container-slide-dawn','log-container-slide-up')
+                console.log('esconder')
+            } else {
+                AUX.replaceClassName(loginRegisterContainer, 'log-container-slide-up', 'log-container-slide-dawn')
+                console.log('mostrar')
+            }
+        }
+        
     })
     
 }
@@ -299,6 +330,7 @@ function actualizeScreen() {
     const menuDropdawnCapsule = document.querySelector('.menu-dropdawn-capsule')
     const nav_userInfosCapsule = document.querySelector('.nav-container > .user-infos-capsule')
     const nav_profileSettCapsule = document.querySelector('.nav-container > .profile-settings-capsule')
+    const loginRegisterButtons = document.querySelector('.user-menu-container > .login-register-buttons-container')
 
     //DESKTOPS
      if (getWindowMedias('desktop')) {
@@ -325,6 +357,7 @@ function actualizeScreen() {
         document.querySelector('.hamburger-menu-button').innerHTML = SVG.hamburguer_menu()
         navContainer.classList.add('mobile-nav-closed')
         navContainer.classList.remove('mobile-nav-opened')
+        loginRegisterButtons.parentNode.classList.add('log-container-slide-dawn')
 
         if (USER.login()) {
             nav_profileSettCapsule.classList.add('user-on')
@@ -338,7 +371,6 @@ function actualizeScreen() {
         // Adiciona um clone dos elementos de usuário às cápsulas, se elas estiverem vazias
         if (!nav_userInfosCapsule.hasChildNodes()) {
             const userPic = document.querySelector('.user-profile-infos > a.user-page-link')
-            const loginRegisterButtons = document.querySelector('.login-register-buttons-container')
             const profileSett = document.querySelector('.user-profile-infos > .profile-generic-settings')
             nav_userInfosCapsule.appendChild(userPic.cloneNode(true))
             nav_userInfosCapsule.appendChild(loginRegisterButtons.cloneNode(true))
