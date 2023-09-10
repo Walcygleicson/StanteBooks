@@ -185,13 +185,11 @@ function Header(capsule) {
 
         // Esconde a aba de login/ registro ao abrir a barra de navegação lateral se o usuário não estiver logado
         if (!USER.login()) {
-            const x = loginRegisterContainer.classList.contains('log-container-slide-dawn')
-            const y = navBar.classList.contains('mobile-nav-closed')
-            if (x && y) {
-
+            const navClosed = navBar.classList.contains('mobile-nav-closed')
+            if (navClosed && window.pageYOffset < 100) {
                 AUX.replaceClassName(loginRegisterContainer, 'log-container-slide-dawn', 'log-container-slide-up')
 
-            } else {
+            } else if (!navClosed && window.pageYOffset < 100){
                 AUX.replaceClassName(loginRegisterContainer, 'log-container-slide-up','log-container-slide-dawn')
             }
         }
@@ -211,7 +209,7 @@ function Header(capsule) {
         const loginRegisterContainer = document.querySelector('.user-menu-container')
         const scrollPosition = evt.currentTarget.scrollY
         if (navBar.classList.contains('mobile-nav-closed')) {
-            if (scrollPosition > 5) {
+            if (scrollPosition > 100) {
                 AUX.replaceClassName(loginRegisterContainer, 'log-container-slide-dawn','log-container-slide-up')
                 console.log('esconder')
             } else {

@@ -230,7 +230,7 @@ let AUX = {
     replaceClassName: (element, remove, add) => {
         element.classList.remove(remove)
         element.classList.add(add)
-    }
+    },
 }
 
 
